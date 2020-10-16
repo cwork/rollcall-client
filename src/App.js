@@ -1,7 +1,8 @@
 import React from 'react';
+import Header from './components/page/Header';
 
 function App() {
-  return <h1>Cleanup</h1>;
+  return <Header />;
 }
 
 export default App;
