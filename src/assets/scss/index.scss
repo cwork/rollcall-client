@@ -3,3 +3,17 @@
 .navbar {
   border-radius: 0;
 }
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+.login-page-columns {
+  min-height: 80vh;
+}
