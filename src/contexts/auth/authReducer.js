@@ -1,6 +1,7 @@
 export default (state, action) => {
   switch (action.type) {
     case 'LOGIN':
+      console.log(action);
       localStorage.setItem('token', action.payload.token);
       return {
         ...state,

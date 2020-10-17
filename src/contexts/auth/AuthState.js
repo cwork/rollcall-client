@@ -17,9 +17,9 @@ const AuthState = ({ children }) => {
         'http://localhost:5000/api/auth/login',
         formData
       );
+      console.log(res);
       dispatch({ type: 'LOGIN', payload: res.data.token });
     } catch (error) {
-      console.log(error.response);
       dispatch({ type: 'LOGIN_FAIL', payload: error.response.message });
     }
   };
