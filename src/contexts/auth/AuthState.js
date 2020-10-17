@@ -11,11 +11,15 @@ const AuthState = ({ children }) => {
 
   const [authState, dispatch] = useReducer(authReducer, initialState);
 
-  const login = async ({ formData }) => {
+  const login = async formData => {
     try {
-      const res = await Axios.post('http://localhost:5000/api/auth/login');
+      const res = await Axios.post(
+        'http://localhost:5000/api/auth/login',
+        formData
+      );
       dispatch({ type: 'LOGIN', payload: res.data.token });
     } catch (error) {
+      console.log(error.response);
       dispatch({ type: 'LOGIN_FAIL', payload: error.response.message });
     }
   };
