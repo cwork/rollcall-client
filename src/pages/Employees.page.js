@@ -5,6 +5,7 @@ import Main from '../components/page/MainContent';
 import Aside from '../components/page/Aside';
 import PageContainer from '../components/page/PageContainer';
 import AddEmployeeForm from '../components/employees/AddEmployeeForm';
+import EmployeeFilter from '../components/employees/EmployeeFilter';
 
 const EmployeesPage = () => {
   const [employees, setEmployees] = useState([]);
@@ -27,6 +28,7 @@ const EmployeesPage = () => {
     <PageContainer>
       <div className="columns">
         <Main title="Employees" colSpan="8">
+          <EmployeeFilter />
           <EmployeesTable employees={employees} />
         </Main>
         <Aside colSpan="4">
