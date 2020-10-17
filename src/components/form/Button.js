@@ -1,8 +1,13 @@
 import React from 'react';
 
-const Button = ({ color, val }) => {
+const Button = ({ color, val, onClick }) => {
   return (
-    <button className={`button ${color ? `is-${color}` : ''}`}>{val}</button>
+    <button
+      className={`button ${color ? `is-${color}` : ''}`}
+      onClick={onClick}
+    >
+      {val}
+    </button>
   );
 };
 
