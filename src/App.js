@@ -1,13 +1,11 @@
 import React from 'react';
-import Footer from './components/page/Footer';
-import Header from './components/page/Header';
+import AppController from './apps/AppController';
 import AuthState from './contexts/auth/AuthState';
-import LoginPage from './pages/Login.page';
 
 function App() {
   return (
     <AuthState>
-      <LoginPage />
+      <AppController />
     </AuthState>
   );
 }
