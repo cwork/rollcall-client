@@ -1,20 +1,18 @@
 import React from 'react';
 import Input from '../form/Input';
 import Button from '../form/Button';
-import useInputState from '../../hooks/useInputState';
 
-const EmployeeFilter = () => {
-  const [filterValue, setFilterValue, resetFilter] = useInputState('');
+const EmployeeFilter = ({ filterText, setFilterText, resetFilterText }) => {
   return (
     <div className="box">
       <Input
         type="text"
-        value={filterValue}
-        onChange={setFilterValue}
+        value={filterText}
+        onChange={setFilterText}
         label="Filter Employees"
         placeholder="Type employee first or last name..."
       />
-      <Button onClick={resetFilter} val="Clear" />
+      <Button onClick={resetFilterText} val="Clear" />
     </div>
   );
 };
