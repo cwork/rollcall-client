@@ -4,7 +4,7 @@ import EmployeeRow from './EmployeeRow';
 const EmployeesTable = ({ employees }) => {
   if (employees.length === 0) return <p>No employees have been added yet.</p>;
   return (
-    <table className="table">
+    <table className="table is-hoverable is-fullwidth is-bordered">
       <thead>
         <tr>
           <th>Last Name</th>
