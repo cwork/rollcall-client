@@ -4,6 +4,7 @@ import Main from '../components/page/MainContent';
 import Aside from '../components/page/Aside';
 import Axios from 'axios';
 import { useParams } from 'react-router-dom';
+import EmployeeCard from '../components/employee/EmployeeCard';
 
 const EmployeePage = () => {
   const employeeId = useParams().employeeId;
@@ -29,7 +30,12 @@ const EmployeePage = () => {
 
   return (
     <PageContainer>
-      <Main title={employeeName}></Main>
+      <div className="columns">
+        <Main title={employeeName} colSpan="8"></Main>
+        <Aside colSpan="4">
+          <EmployeeCard employee={employee} />
+        </Aside>
+      </div>
     </PageContainer>
   );
 };
