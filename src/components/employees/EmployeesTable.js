@@ -10,6 +10,7 @@ const EmployeesTable = ({ employees }) => {
           <th>Last Name</th>
           <th>First Name</th>
           <th>Occurrences</th>
+          <th>View Profile</th>
         </tr>
       </thead>
       <tbody>
