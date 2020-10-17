@@ -29,7 +29,7 @@ const AddEmployeeForm = ({ setIsLoading }) => {
 
   return (
     <div className="box">
-      <h2>Add Employee</h2>
+      <h2 className="is-size-4">Add Employee</h2>
       <form onSubmit={handleSubmit}>
         <Input
           type="text"
