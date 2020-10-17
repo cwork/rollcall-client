@@ -8,6 +8,7 @@ const Input = props => {
       </label>
       <div className="control">
         <input
+          className="input"
           type={props.type}
           id={props.id}
           name={props.name}
