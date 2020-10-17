@@ -14,6 +14,7 @@ const LoginPage = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    console.log({ identifier: identifierValue });
     login({ identifier: identifierValue, password: passwordValue });
   };
 
