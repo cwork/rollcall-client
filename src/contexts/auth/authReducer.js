@@ -4,7 +4,7 @@ export default (state, action) => {
       localStorage.setItem('token', action.payload.token);
       return {
         ...state,
-        token: action.playload.token,
+        token: action.payload.token,
         isAuthenticated: true
       };
     case 'LOGOUT':
