@@ -2,7 +2,9 @@ import Axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import EmployeesTable from '../components/employees/EmployeesTable';
 import Main from '../components/page/MainContent';
+import Aside from '../components/page/Aside';
 import PageContainer from '../components/page/PageContainer';
+import AddEmployeeForm from '../components/employees/AddEmployeeForm';
 
 const EmployeesPage = () => {
   const [employees, setEmployees] = useState([]);
@@ -23,9 +25,14 @@ const EmployeesPage = () => {
 
   return (
     <PageContainer>
-      <Main title="Employees">
-        <EmployeesTable employees={employees} />
-      </Main>
+      <div className="columns">
+        <Main title="Employees" colSpan="8">
+          <EmployeesTable employees={employees} />
+        </Main>
+        <Aside colSpan="4">
+          <AddEmployeeForm setIsLoading={setIsLoading} />
+        </Aside>
+      </div>
     </PageContainer>
   );
 };
