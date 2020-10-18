@@ -1,6 +1,8 @@
 import React from 'react';
+import { sortByDate, formatDate } from '../../utils/occurrences';
 
 const EmployeeOccurrences = ({ occurrences }) => {
+  const sortedOccurrences = sortByDate(occurrences);
   if (occurrences.length === 0) {
     return (
       <div className="box">
@@ -20,9 +22,9 @@ const EmployeeOccurrences = ({ occurrences }) => {
           </tr>
         </thead>
         <tbody>
-          {occurrences.map(occurrence => (
+          {sortedOccurrences.map(occurrence => (
             <tr>
-              <td>{occurrence.dateOf}</td>
+              <td>{formatDate(occurrence.dateOf)}</td>
               <td>{occurrence.isCovered ? 'Covered' : 'Not covered'}</td>
               <td>{occurrence.note}</td>
             </tr>
