@@ -6,6 +6,7 @@ import Axios from 'axios';
 import { useParams } from 'react-router-dom';
 import EmployeeCard from '../components/employee/EmployeeCard';
 import EmployeeOccurrences from '../components/occurrences/EmployeeOccurrences';
+import AddOccurrenceForm from '../components/occurrences/AddOccurrenceForm';
 
 const EmployeePage = () => {
   const employeeId = useParams().employeeId;
@@ -28,7 +29,6 @@ const EmployeePage = () => {
   }, [isLoading, employeeId]);
 
   const employeeName = `${employee.firstName} ${employee.lastName}`;
-  console.log(employee);
   return (
     <PageContainer>
       {!isLoading ? (
@@ -38,6 +38,10 @@ const EmployeePage = () => {
           </Main>
           <Aside colSpan="4">
             <EmployeeCard employee={employee} />
+            <AddOccurrenceForm
+              employee={employee}
+              setIsLoading={setIsLoading}
+            />
           </Aside>
         </div>
       ) : (

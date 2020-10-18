@@ -9,7 +9,7 @@ const Input = props => {
       <div className="control">
         <input
           value={props.value}
-          className="input"
+          className={props.className ? props.className : 'input'}
           type={props.type}
           id={props.id}
           name={props.name}
