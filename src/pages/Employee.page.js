@@ -5,6 +5,7 @@ import Aside from '../components/page/Aside';
 import Axios from 'axios';
 import { useParams } from 'react-router-dom';
 import EmployeeCard from '../components/employee/EmployeeCard';
+import EmployeeOccurrences from '../components/occurrences/EmployeeOccurrences';
 
 const EmployeePage = () => {
   const employeeId = useParams().employeeId;
@@ -27,15 +28,21 @@ const EmployeePage = () => {
   }, [isLoading, employeeId]);
 
   const employeeName = `${employee.firstName} ${employee.lastName}`;
-
+  console.log(employee);
   return (
     <PageContainer>
-      <div className="columns">
-        <Main title={employeeName} colSpan="8"></Main>
-        <Aside colSpan="4">
-          <EmployeeCard employee={employee} />
-        </Aside>
-      </div>
+      {!isLoading ? (
+        <div className="columns">
+          <Main title={employeeName} colSpan="8">
+            <EmployeeOccurrences occurrences={employee.occurrences} />
+          </Main>
+          <Aside colSpan="4">
+            <EmployeeCard employee={employee} />
+          </Aside>
+        </div>
+      ) : (
+        <p>Loading</p>
+      )}
     </PageContainer>
   );
 };
