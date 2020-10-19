@@ -44,6 +44,7 @@ const EmployeeOccurrences = () => {
         <tbody>
           {sortedOccurrences.map(occurrence => (
             <OccurrenceRow
+              key={occurrence._id}
               occurrence={occurrence}
               setIsChanged={setIsChanged}
             />
