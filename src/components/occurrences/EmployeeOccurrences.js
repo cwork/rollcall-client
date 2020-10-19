@@ -1,6 +1,6 @@
-import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Axios from 'axios';
 import { markActive } from '../../utils/occurrences';
 import OccurrenceRow from './OccurrenceRow';
 
