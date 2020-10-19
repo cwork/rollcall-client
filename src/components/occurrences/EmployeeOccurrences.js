@@ -1,5 +1,6 @@
 import React from 'react';
-import { formatDate, markActive } from '../../utils/occurrences';
+import { markActive } from '../../utils/occurrences';
+import OccurrenceRow from './OccurrenceRow';
 
 const EmployeeOccurrences = ({ occurrences }) => {
   const sortedOccurrences = markActive(occurrences);
@@ -24,12 +25,7 @@ const EmployeeOccurrences = ({ occurrences }) => {
         </thead>
         <tbody>
           {sortedOccurrences.map(occurrence => (
-            <tr>
-              <td>{formatDate(occurrence.dateOf)}</td>
-              <td>{occurrence.isCovered ? 'Covered' : 'Not covered'}</td>
-              <td>{occurrence.isActive ? 'Active' : 'Inactive'}</td>
-              <td>{occurrence.note}</td>
-            </tr>
+            <OccurrenceRow occurrence={occurrence} />
           ))}
         </tbody>
       </table>
