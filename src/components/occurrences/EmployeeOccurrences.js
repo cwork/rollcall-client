@@ -1,10 +1,28 @@
-import React from 'react';
+import Axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { markActive } from '../../utils/occurrences';
 import OccurrenceRow from './OccurrenceRow';
 
-const EmployeeOccurrences = ({ occurrences }) => {
-  const sortedOccurrences = markActive(occurrences);
-  if (occurrences.length === 0) {
+const EmployeeOccurrences = () => {
+  const employeeId = useParams().employeeId;
+  const [sortedOccurrences, setSortedOccurrences] = useState([]);
+  const [isChanged, setIsChanged] = useState(false);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await Axios.get(
+          `http://localhost:5000/api/employee/${employeeId}/occurrence`
+        );
+        setSortedOccurrences(markActive(res.data.data));
+        setIsChanged(false);
+      } catch (error) {
+        console.log(error.response);
+      }
+    };
+    fetchData();
+  }, [employeeId, isChanged]);
+  if (sortedOccurrences.length === 0) {
     return (
       <div className="box">
         <p>This employee has not accrrued any occurrences!</p>
@@ -25,7 +43,10 @@ const EmployeeOccurrences = ({ occurrences }) => {
         </thead>
         <tbody>
           {sortedOccurrences.map(occurrence => (
-            <OccurrenceRow occurrence={occurrence} />
+            <OccurrenceRow
+              occurrence={occurrence}
+              setIsChanged={setIsChanged}
+            />
           ))}
         </tbody>
       </table>

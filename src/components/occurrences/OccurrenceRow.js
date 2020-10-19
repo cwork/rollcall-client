@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import Axios from 'axios';
 import { formatDate } from '../../utils/occurrences';
 
-const OccurrenceRow = ({ occurrence }) => {
+const OccurrenceRow = ({ occurrence, setIsChanged }) => {
   const [isCovered, setIsCovered] = useState(occurrence.isCovered);
   const employeeId = useParams().employeeId;
   const handleChange = async occurrence => {
@@ -15,6 +15,7 @@ const OccurrenceRow = ({ occurrence }) => {
         }
       );
       setIsCovered(!isCovered);
+      setIsChanged(true);
     } catch (error) {
       console.log(error.response);
     }
