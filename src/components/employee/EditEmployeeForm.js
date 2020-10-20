@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Input from '../form/Input';
 import Button from '../form/Button';
 import useInputState from '../../hooks/useInputState';
 import Axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 const EditEmployeeForm = ({ employee, setIsLoading }) => {
   const [firstName, setFirstName] = useInputState(employee.firstName);
   const [lastName, setLastName] = useInputState(employee.lastName);
+  const [deleted, setDeleted] = useState(false);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -20,6 +22,17 @@ const EditEmployeeForm = ({ employee, setIsLoading }) => {
       console.log(error.response);
     }
   };
+
+  const handleDelete = async () => {
+    try {
+      await Axios.delete(`http://localhost:5000/api/employee/${employee._id}`);
+      setDeleted(true);
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
+  if (deleted) return <Redirect to="/" />;
 
   return (
     <div className="box">
@@ -39,6 +52,12 @@ const EditEmployeeForm = ({ employee, setIsLoading }) => {
           onChange={setLastName}
         />
         <Button val="Save" color="primary" />
+        <Button
+          type="button"
+          val="Delete"
+          color="danger"
+          onClick={handleDelete}
+        />
       </form>
     </div>
   );
