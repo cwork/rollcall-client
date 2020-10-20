@@ -1,8 +1,8 @@
 import React from 'react';
 
-const EmployeeCard = ({ employee, setIsEditing, isEditing }) => {
+const EmployeeCard = ({ employee }) => {
   return (
-    <div className="card">
+    <div className="card mb-4">
       <header className="card-header">
         <p className="card-header-title is-size-4">{employee.firstName}</p>
       </header>
