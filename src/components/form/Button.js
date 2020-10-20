@@ -1,8 +1,9 @@
 import React from 'react';
 
-const Button = ({ color, val, onClick }) => {
+const Button = ({ type, color, val, onClick }) => {
   return (
     <button
+      type={type ? type : 'submit'}
       className={`button ${color ? `is-${color}` : ''}`}
       onClick={onClick}
     >
