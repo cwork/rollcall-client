@@ -7,11 +7,14 @@ import Aside from '../components/page/Aside';
 import EmployeeCard from '../components/employee/EmployeeCard';
 import EmployeeOccurrences from '../components/occurrences/EmployeeOccurrences';
 import AddOccurrenceForm from '../components/occurrences/AddOccurrenceForm';
+import EditEmployeeForm from '../components/employee/EditEmployeeForm';
+import Button from '../components/form/Button';
 
 const EmployeePage = () => {
   const employeeId = useParams().employeeId;
   const [employee, setEmployee] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [editing, setIsEditing] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +37,19 @@ const EmployeePage = () => {
       {!isLoading ? (
         <div className="columns">
           <Main title={employeeName} colSpan="8">
+            <div className="content">
+              <Button
+                color="link"
+                val={editing ? 'Cancel' : 'Edit'}
+                onClick={() => setIsEditing(!editing)}
+              />
+            </div>
+            {editing && (
+              <EditEmployeeForm
+                employee={employee}
+                setIsLoading={setIsLoading}
+              />
+            )}
             <EmployeeOccurrences occurrences={employee.occurrences} />
           </Main>
           <Aside colSpan="4">

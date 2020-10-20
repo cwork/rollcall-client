@@ -1,6 +1,6 @@
 import React from 'react';
 
-const EmployeeCard = ({ employee }) => {
+const EmployeeCard = ({ employee, setIsEditing, isEditing }) => {
   return (
     <div className="card">
       <header className="card-header">
@@ -22,12 +22,9 @@ const EmployeeCard = ({ employee }) => {
         </div>
       </div>
       <footer className="card-footer">
-        <a href="/" className="card-footer-item has-background-danger">
+        {/* <a href="/" className="card-footer-item has-background-danger">
           Deactivate
-        </a>
-        <a href="/" className="card-footer-item has-background-primary">
-          Edit
-        </a>
+        </a> */}
       </footer>
     </div>
   );
