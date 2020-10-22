@@ -57,7 +57,7 @@ const EmployeePage = () => {
                 className="mr-2"
               />
               <Button
-                color="danger"
+                color="warning"
                 val={employee.isActive ? 'Archive' : 'Unarchive'}
                 onClick={handleArchive}
               />
