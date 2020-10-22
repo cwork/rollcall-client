@@ -13,8 +13,10 @@ const EditEmployeeForm = ({ employee, setIsLoading }) => {
   const [deleted, setDeleted] = useState(false);
 
   useEffect(() => {
+    console.log('getting hire date');
     setDate(new Date(employee.hiredAt));
-  }, []);
+  }, [employee.hiredAt]);
+
   const handleSubmit = async e => {
     e.preventDefault();
     try {
