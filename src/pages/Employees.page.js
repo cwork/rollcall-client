@@ -7,10 +7,12 @@ import PageContainer from '../components/page/PageContainer';
 import AddEmployeeForm from '../components/employees/AddEmployeeForm';
 import EmployeeFilter from '../components/employees/EmployeeFilter';
 import useInputState from '../hooks/useInputState';
+import ActiveControl from '../components/employee/ActiveControl';
 
 const EmployeesPage = () => {
   const [employees, setEmployees] = useState([]);
   const [filterText, setFilterText, resetFilterText] = useInputState('');
+  const [showAll, setShowAll] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -26,7 +28,20 @@ const EmployeesPage = () => {
     fetchData();
   }, [isLoading]);
 
-  const filteredEmployees = employees.filter(employee => {
+  const handleInputChange = () => {
+    setShowAll(!showAll);
+    //setEmployees(employees.filter(emp => emp.isActive === showAll));
+  };
+
+  /**
+   * Create a statefulEmployees variable to hold either Active employees
+   * or all employees
+   */
+  const statefulEmployees = !showAll
+    ? employees.filter(employee => employee.isActive === !showAll)
+    : [...employees];
+
+  const filteredEmployees = statefulEmployees.filter(employee => {
     return (
       employee.firstName.toLowerCase().startsWith(filterText.toLowerCase()) ||
       employee.lastName.toLowerCase().startsWith(filterText.toLowerCase())
@@ -41,6 +56,10 @@ const EmployeesPage = () => {
             filterText={filterText}
             setFilterText={setFilterText}
             resetFilterText={resetFilterText}
+          />
+          <ActiveControl
+            showAll={showAll}
+            handleInputChange={handleInputChange}
           />
           <EmployeesTable employees={filteredEmployees} />
         </Main>
