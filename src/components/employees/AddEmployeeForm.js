@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Axios from 'axios';
+import DatePicker from 'react-datepicker';
 import Input from '../form/Input';
 import Button from '../form/Button';
 import useInputState from '../../hooks/useInputState';
-import Axios from 'axios';
 
 const AddEmployeeForm = ({ setIsLoading }) => {
+  const [date, setDate] = useState(new Date());
   const [
     firstNameValue,
     setFirstNameValue,
@@ -49,6 +51,19 @@ const AddEmployeeForm = ({ setIsLoading }) => {
           value={lastNameValue}
           onChange={setLastNameValue}
         />
+        <div className="control mb-4">
+          <label htmlFor="hireDate" className="label">
+            Hire Date
+          </label>
+          <DatePicker
+            id="hireDate"
+            name="hireDate"
+            selected={date}
+            onChange={date => setDate(date)}
+            todayButton="Today"
+            className="input"
+          />
+        </div>
         <Button color="link" val="Add" />
       </form>
     </div>

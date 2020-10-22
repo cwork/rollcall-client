@@ -1,21 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
 import Input from '../form/Input';
 import Button from '../form/Button';
 import useInputState from '../../hooks/useInputState';
 import Axios from 'axios';
-import { Redirect } from 'react-router-dom';
 
 const EditEmployeeForm = ({ employee, setIsLoading }) => {
+  const [hireDate, setDate] = useState(new Date());
   const [firstName, setFirstName] = useInputState(employee.firstName);
   const [lastName, setLastName] = useInputState(employee.lastName);
   const [deleted, setDeleted] = useState(false);
 
+  useEffect(() => {
+    setDate(new Date(employee.hiredAt));
+  }, []);
   const handleSubmit = async e => {
     e.preventDefault();
     try {
       await Axios.put(`http://localhost:5000/api/employee/${employee._id}`, {
         firstName,
-        lastName
+        lastName,
+        hiredAt: hireDate
       });
       setIsLoading(true);
     } catch (error) {
@@ -51,6 +57,19 @@ const EditEmployeeForm = ({ employee, setIsLoading }) => {
           value={lastName}
           onChange={setLastName}
         />
+        <div className="control mb-4">
+          <label htmlFor="hireDate" className="label">
+            Hire Date
+          </label>
+          <DatePicker
+            id="hireDate"
+            name="hireDate"
+            selected={hireDate}
+            onChange={hireDate => setDate(hireDate)}
+            todayButton="Today"
+            className="input"
+          />
+        </div>
         <Button val="Save" color="primary" />
         <Button
           type="button"
