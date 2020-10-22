@@ -54,9 +54,10 @@ const EmployeePage = () => {
                 color="link"
                 val={editing ? 'Cancel' : 'Edit'}
                 onClick={() => setIsEditing(!editing)}
+                className="mr-2"
               />
               <Button
-                color="warning"
+                color="danger"
                 val={employee.isActive ? 'Archive' : 'Unarchive'}
                 onClick={handleArchive}
               />
