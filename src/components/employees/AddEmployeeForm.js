@@ -21,7 +21,8 @@ const AddEmployeeForm = ({ setIsLoading }) => {
     try {
       await Axios.post('http://localhost:5000/api/employee', {
         firstName: firstNameValue,
-        lastName: lastNameValue
+        lastName: lastNameValue,
+        hiredAt: date
       });
     } catch (error) {}
     resetFirstNameValue();
