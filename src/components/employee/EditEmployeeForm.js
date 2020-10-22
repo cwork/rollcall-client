@@ -72,7 +72,7 @@ const EditEmployeeForm = ({ employee, setIsLoading }) => {
             className="input"
           />
         </div>
-        <Button val="Save" color="primary" />
+        <Button type="submit" val="Save" color="primary" className="mr-2" />
         <Button
           type="button"
           val="Delete"
