@@ -31,6 +31,18 @@ const EmployeePage = () => {
     fetchData();
   }, [isLoading, employeeId]);
 
+  const handleArchive = async () => {
+    console.log('archiving');
+    try {
+      await Axios.put(`http://localhost:5000/api/employee/${employeeId}`, {
+        isActive: !employee.isActive
+      });
+      setIsLoading(true);
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
   const employeeName = `${employee.firstName} ${employee.lastName}`;
   return (
     <PageContainer>
@@ -42,6 +54,11 @@ const EmployeePage = () => {
                 color="link"
                 val={editing ? 'Cancel' : 'Edit'}
                 onClick={() => setIsEditing(!editing)}
+              />
+              <Button
+                color="warning"
+                val={employee.isActive ? 'Archive' : 'Unarchive'}
+                onClick={handleArchive}
               />
             </div>
             {editing && (
