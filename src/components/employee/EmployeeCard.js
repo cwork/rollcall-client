@@ -12,7 +12,9 @@ const EmployeeCard = ({ employee }) => {
             <li>Status: {employee.isActive ? 'Active' : 'Inactive'}</li>
             <li>
               Hire date:{' '}
-              {employee.hiredAt ? employee.hiredAt : 'No hire date set'}
+              {employee.hiredAt
+                ? new Date(employee.hiredAt).toLocaleDateString()
+                : 'No hire date set'}
             </li>
             <li>
               Occurrences:{' '}
