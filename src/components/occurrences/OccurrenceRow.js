@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Axios from 'axios';
 import { formatDate } from '../../utils/occurrences';
 
@@ -33,6 +33,14 @@ const OccurrenceRow = ({ occurrence, setIsChanged }) => {
       </td>
       <td>{occurrence.isActive ? 'Active' : 'Inactive'}</td>
       <td>{occurrence.note}</td>
+      <td>
+        <Link
+          to={`http://localhost:5000/api/employee/${employeeId}/occurrence/${occurrence._id}`}
+          className="button"
+        >
+          Edit
+        </Link>
+      </td>
     </tr>
   );
 };

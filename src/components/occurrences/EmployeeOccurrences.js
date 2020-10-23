@@ -39,6 +39,7 @@ const EmployeeOccurrences = () => {
             <th>OSL</th>
             <th>Active</th>
             <th>Note</th>
+            <th>Edit</th>
           </tr>
         </thead>
         <tbody>
