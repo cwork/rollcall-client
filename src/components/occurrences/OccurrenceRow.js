@@ -35,8 +35,9 @@ const OccurrenceRow = ({ occurrence, setIsChanged }) => {
       <td>{occurrence.note}</td>
       <td>
         <Link
-          to={`http://localhost:5000/api/employee/${employeeId}/occurrence/${occurrence._id}`}
+          to={`${employeeId}/occurrence/${occurrence._id}`}
           className="button"
+          test={'test'}
         >
           Edit
         </Link>

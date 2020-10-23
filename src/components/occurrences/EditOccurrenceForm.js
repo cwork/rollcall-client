@@ -1,36 +1,55 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
-import Input from '../form/Input';
 import Button from '../form/Button';
-import useInputState from '../../hooks/useInputState';
 import 'react-datepicker/dist/react-datepicker.css';
 import Axios from 'axios';
+import { Redirect, useParams } from 'react-router-dom';
 
-const AddOccurrenceForm = ({ employee, setIsLoading }) => {
+const EditOccurrenceForm = () => {
   const [date, setDate] = useState(new Date());
-  const [covered, setCovered] = useInputState(false);
+  const [covered, setCovered] = useState(false);
   const [note, setNote] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const employeeId = useParams().employeeId;
+  const occurrenceId = useParams().occurrenceId;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await Axios.get(
+        `http://localhost:5000/api/employee/${employeeId}/occurrence/${occurrenceId}`
+      );
+      setDate(new Date(res.data.data.dateOf));
+      setCovered(res.data.data.isCovered);
+      setNote(res.data.data.note);
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
 
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await Axios.post(
-        `http://localhost:5000/api/employee/${employee._id}/occurrence`,
+      await Axios.put(
+        `http://localhost:5000/api/employee/${employeeId}/occurrence/${occurrenceId}`,
         {
           dateOf: date,
           isCovered: covered,
           note
         }
       );
+      setSubmitted(true);
     } catch (error) {
       console.log(error.response);
     }
-    setIsLoading(true);
   };
 
-  return (
+  if (submitted) return <Redirect to={`/employee/${employeeId}`} />;
+
+  return isLoading ? (
+    <p>loading...</p>
+  ) : (
     <div className="box">
-      <h3 className="is-size-4">Add Occurrence</h3>
       <form onSubmit={handleSubmit}>
         <div className="field">
           <div className="columns">
@@ -48,14 +67,16 @@ const AddOccurrenceForm = ({ employee, setIsLoading }) => {
               />
             </div>
             <div className="column">
-              <Input
+              <label className="label" htmlFor="isCovered">
+                OSL
+              </label>
+              <input
                 type="checkbox"
-                label="Covered"
                 className="checkbox"
                 id="isCovered"
-                name="isCovered"
                 value={covered}
-                onChange={setCovered}
+                checked={covered}
+                onChange={() => setCovered(!covered)}
               />
             </div>
           </div>
@@ -73,10 +94,10 @@ const AddOccurrenceForm = ({ employee, setIsLoading }) => {
             </div>
           </div>
         </div>
-        <Button val="Add" color="is-primary" />
+        <Button val="Update" color="primary" />
       </form>
     </div>
   );
 };
 
-export default AddOccurrenceForm;
+export default EditOccurrenceForm;
