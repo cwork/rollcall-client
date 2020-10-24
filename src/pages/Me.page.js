@@ -17,7 +17,7 @@ const Me = () => {
       }
     };
     fetchData();
-  });
+  }, []);
   if (isLoading) return <p>Loading...</p>;
   return (
     <PageContainer>
