@@ -21,12 +21,12 @@ const Navbar = () => {
         {isAuthenticated && (
           <div className="navbar-menu">
             <div className="navbar-start">
-              <a href="/user" className="navbar-item">
+              <a href="/user/me" className="navbar-item">
                 <i className="fa fa-user mr-1"></i>My Profile
               </a>
-              <a href="/user" className="navbar-item">
+              {/* <a href="/user" className="navbar-item">
                 <i className="fa fa-bell mr-1"></i>Notifcations
-              </a>
+              </a> */}
             </div>
             <div className="navbar-end">
               <div className="navbar-item">

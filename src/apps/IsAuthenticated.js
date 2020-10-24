@@ -4,6 +4,7 @@ import EmployeesPage from '../pages/Employees.page';
 import EmployeePage from '../pages/Employee.page';
 import EditOccurrence from '../pages/EditOccurrence';
 import AddUserPage from '../pages/AddUserPage';
+import Me from '../pages/Me.page';
 
 const IsAuthenticated = () => {
   return (
@@ -17,6 +18,7 @@ const IsAuthenticated = () => {
           component={EditOccurrence}
         />
         <Route exact path="/user/add" component={AddUserPage} />
+        <Route exact path="/user/me" component={Me} />
       </Switch>
     </Router>
   );
