@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import Button from '../form/Button';
 import 'react-datepicker/dist/react-datepicker.css';
 import Axios from 'axios';
-import { Redirect, useParams } from 'react-router-dom';
+import { Link, Redirect, useParams } from 'react-router-dom';
 
 const EditOccurrenceForm = () => {
   const [date, setDate] = useState(new Date());
@@ -97,7 +97,10 @@ const EditOccurrenceForm = () => {
             </div>
           </div>
         </div>
-        <Button val="Update" color="primary" />
+        <Button val="Update" color="primary" className="mr-2" />
+        <Link className="button is-warning" to={`/employee/${employeeId}`}>
+          Cancel
+        </Link>
       </form>
     </div>
   );
