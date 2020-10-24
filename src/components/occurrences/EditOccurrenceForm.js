@@ -25,7 +25,7 @@ const EditOccurrenceForm = () => {
       setIsLoading(false);
     };
     fetchData();
-  }, []);
+  }, [employeeId, occurrenceId]);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -53,7 +53,7 @@ const EditOccurrenceForm = () => {
       <form onSubmit={handleSubmit}>
         <div className="field">
           <div className="columns">
-            <div className="column">
+            <div className="column is-3">
               <label htmlFor="date" className="label">
                 Date
               </label>
@@ -68,7 +68,7 @@ const EditOccurrenceForm = () => {
             </div>
             <div className="column">
               <label className="label" htmlFor="isCovered">
-                OSL
+                Covered
               </label>
               <input
                 type="checkbox"
@@ -78,6 +78,9 @@ const EditOccurrenceForm = () => {
                 checked={covered}
                 onChange={() => setCovered(!covered)}
               />
+              <p className="help">
+                Check this box if this occurrence is covered.
+              </p>
             </div>
           </div>
           <div className="field">
