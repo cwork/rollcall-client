@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import EmployeesPage from '../pages/Employees.page';
 import EmployeePage from '../pages/Employee.page';
 import EditOccurrence from '../pages/EditOccurrence';
+import AddUserPage from '../pages/AddUserPage';
 
 const IsAuthenticated = () => {
   return (
@@ -15,6 +16,7 @@ const IsAuthenticated = () => {
           path="/employee/:employeeId/occurrence/:occurrenceId"
           component={EditOccurrence}
         />
+        <Route exact path="/user/add" component={AddUserPage} />
       </Switch>
     </Router>
   );
